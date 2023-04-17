@@ -18,7 +18,7 @@ function ShowQuestion({ answerCountry, options, selectedOption, handleOptionChan
                             //checkedは視覚的に選択されてることを見せるのに必要(true/false)
                             checked={selectedOption === option}
                             onChange={handleOptionChange}
-                            disabled={!isSubmitted} />
+                            disabled={isSubmitted} />
                         <label htmlFor={option}>{option}</label>
                     </li>
                 ))}
