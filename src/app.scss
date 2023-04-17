@@ -1,0 +1,9 @@
+.barOutline {
+    width: 70vw;
+    border: 1px solid black;
+
+    .progress {
+        background: rgba(76, 76, 184, 0.704);
+        transition: width 0.2s ease-in-out;
+    }
+}

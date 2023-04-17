@@ -5,6 +5,8 @@ import ShowQuestion from './ShowQuestion'
 import { useState, useEffect, useCallback } from 'react';
 import NextButton from "./NextButton"
 import { getNationalData } from '../repository/country';
+import ProgressBar from './ProgressBar';
+import { Link } from "react-router-dom";
 
 function Questions() {
 
@@ -13,19 +15,18 @@ function Questions() {
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [question, setQuestion] = useState(null)
     //usestateは更新ボタンを押したら初期値（今回はnull）に戻ってしまう
+    const [progress, setprogress] = useState(0)
+    const [countCorrectAnswer, setCountCorrectAnswer] = useState(0)
 
     //useCallbackは第二引数の時だけ定義をし直す
     const handleFetchNationalData = useCallback(() => {
         getNationalData().then((data) => {
-            console.log(data)
 
             //たくさんある国の配列の中のランダムなとこにアクセス
             const answerCountry = data[Math.floor(Math.random() * data.length)]
-            console.log(answerCountry)
 
             //全世界の国名のみ取得
             const allCountriesName = data.map((country) => country.name.common)
-            console.log(allCountriesName)
             const options = [
                 answerCountry.name.common,
                 //ランダムな3国名を取得
@@ -54,11 +55,13 @@ function Questions() {
 
     const handleSubmit = () => {
         if (question === null) return;
+        setprogress(progress + 10)
         //答えが一致しているか判定
         const isAnswerMatch = selectedOption === question.answerCountry.name.common
         setIsSubmitted(true)
         if (isAnswerMatch) {
             setIsAnswerCorrect(true)
+            setCountCorrectAnswer(countCorrectAnswer + 1)
         } else {
             setIsAnswerCorrect(false)
         }
@@ -77,10 +80,13 @@ function Questions() {
 
     return (
         <div>
+            <ProgressBar progress={progress} />
             <ShowQuestion answerCountry={question.answerCountry} options={question.options} selectedOption={selectedOption} handleOptionChange={handleOptionChange} isSubmitted={isSubmitted} />
             {!isSubmitted ? <SubmitButton handleSubmit={handleSubmit} />
                 : <NextButton handleNextButton={handleNextButton} />}
             {selectedOption !== null && <ShowAnswer isAnswerCorrect={isAnswerCorrect} answerCountryName={question.answerCountry.name.common} />}
+            {progress === 100 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}><button> Check your final Score!</button></Link>}
+
         </div >
     )
 }
