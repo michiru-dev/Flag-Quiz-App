@@ -6,7 +6,7 @@ function ProgressBar({ progress }) {
     }
     return (
         <div className='barOutline'>
-            <div className='progress' style={barStyle}>{progress}</div>
+            <div className='progress' style={barStyle}>{progress}%</div>
         </div>
     )
 }
