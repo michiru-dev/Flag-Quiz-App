@@ -2,9 +2,11 @@ import React from 'react'
 
 function WrongAnswer({ answerCountryName }) {
     return (
-        <div>
-            <div>Wrong</div>
-            <div>Answer is: {answerCountryName}</div>
+        <div className='wrongAnswer'>
+            <div className='wrong'>Wrong😫</div>
+            <div className='correctAnswerIs'>
+                Correct answer is:&emsp; <span className='giveCorrectAnswer'>{answerCountryName}</span>
+            </div>
         </div>
     )
 }

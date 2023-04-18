@@ -1,10 +1,11 @@
 
 
-function Submit({ handleSubmit }) {
+function Submit({ handleSubmit, selectedOption }) {
+
 
     return (
         <div>
-            <button type='button' onClick={handleSubmit}>Answer</button>
+            <button className="submitButton" type='button' onClick={handleSubmit} disabled={selectedOption === null}>Answer</button>
         </div>
 
     )
