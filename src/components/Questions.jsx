@@ -27,19 +27,31 @@ function Questions() {
 
             //全世界の国名のみ取得
             const allCountriesName = data.map((country) => country.name.common)
-            const options = [
+            let options = [
                 answerCountry.name.common,
                 //ランダムな3国名を取得
                 allCountriesName[Math.floor(Math.random() * allCountriesName.length)],
                 allCountriesName[Math.floor(Math.random() * allCountriesName.length)],
                 allCountriesName[Math.floor(Math.random() * allCountriesName.length)],
-            ].sort(() => Math.random() - 0.5)
+            ]
+            console.log(options = new Set(options))
+            console.log(options = [...new Set(options)])
+            // 重複する要素を除外する const a = new Set(配列[1,2,3])をすると重複した値を除いたオブジェクトが
+            //返る。スプレッド構文でarrayにしている
+            options = [...new Set(options)]
+            while (options.length < 4) {
+                options.push(allCountriesName[Math.floor(Math.random() * allCountriesName.length)])
+                options = [...new Set(options)]
+            }
+
+            options.sort(() => Math.random() - 0.5)
             //sortは引数の結果によって並び替えを行う負の値→シャッフル、0&正の値→シャッフル無し
             //math.random-0.5の結果は50％の確率でシャッフルが行われる
             setQuestion({ answerCountry: answerCountry, options: options })
 
         })
     }, [])
+
 
     //初回にhandleFetchNationalDataを実行する
     //第二引数はなくてもいけるがwarningでてるので入れとく
