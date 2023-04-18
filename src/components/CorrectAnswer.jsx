@@ -2,7 +2,7 @@ import React from 'react'
 
 function CorrectAnswer() {
     return (
-        <div>Correct</div>
+        <div className='correctAnswer'>Correct👏</div>
     )
 }
 

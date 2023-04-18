@@ -1,9 +1,7 @@
 import React from 'react'
-import SubmitButton from './SubmitButton'
 import ShowAnswer from './ShowAnswer'
 import ShowQuestion from './ShowQuestion'
 import { useState, useEffect, useCallback } from 'react';
-import NextButton from "./NextButton"
 import { getNationalData } from '../repository/country';
 import ProgressBar from './ProgressBar';
 import { Link } from "react-router-dom";
@@ -34,8 +32,6 @@ function Questions() {
                 allCountriesName[Math.floor(Math.random() * allCountriesName.length)],
                 allCountriesName[Math.floor(Math.random() * allCountriesName.length)],
             ]
-            console.log(options = new Set(options))
-            console.log(options = [...new Set(options)])
             // 重複する要素を除外する const a = new Set(配列[1,2,3])をすると重複した値を除いたオブジェクトが
             //返る。スプレッド構文でarrayにしている
             options = [...new Set(options)]
@@ -68,9 +64,9 @@ function Questions() {
     const handleSubmit = () => {
         if (question === null) return;
         setprogress(progress + 10)
+        setIsSubmitted(true)
         //答えが一致しているか判定
         const isAnswerMatch = selectedOption === question.answerCountry.name.common
-        setIsSubmitted(true)
         if (isAnswerMatch) {
             setIsAnswerCorrect(true)
             setCountCorrectAnswer(countCorrectAnswer + 1)
@@ -93,11 +89,11 @@ function Questions() {
     return (
         <div>
             <ProgressBar progress={progress} />
-            <ShowQuestion answerCountry={question.answerCountry} options={question.options} selectedOption={selectedOption} handleOptionChange={handleOptionChange} isSubmitted={isSubmitted} />
-            {!isSubmitted ? <SubmitButton handleSubmit={handleSubmit} />
-                : <NextButton handleNextButton={handleNextButton} />}
+            <ShowQuestion answerCountry={question.answerCountry} options={question.options}
+                selectedOption={selectedOption} handleOptionChange={handleOptionChange}
+                isSubmitted={isSubmitted} handleNextButton={handleNextButton} handleSubmit={handleSubmit} />
             {selectedOption !== null && <ShowAnswer isAnswerCorrect={isAnswerCorrect} answerCountryName={question.answerCountry.name.common} />}
-            {progress === 100 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}><button> Check your final Score!</button></Link>}
+            {progress === 100 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}><button className='finalScoreButton'> Check your final Score!</button></Link>}
 
         </div >
     )
