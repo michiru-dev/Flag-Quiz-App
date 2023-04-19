@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 //reactrouterを使ってるためpropsをわたせないからuselocationを使ってる
+import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton';
+import { Link } from 'react-router-dom';
 
 function FinalScore() {
     const location = useLocation()
@@ -29,7 +31,11 @@ function FinalScore() {
 
 
     return (
-        <div>You got {location.state.countCorrectAnswer}/10!</div>
+        <div>
+            <div className='finalScore'>You got {location.state.countCorrectAnswer}/10!</div>
+            <Link to={"/quiz"}><PlayAndScoreCheckButton text={"Play again!"} className={"playAgainButton"} /></Link>
+            {/* /ダッシュはルートからという意味がある */}
+        </div>
     )
 }
 

@@ -4,7 +4,7 @@ import SubmitButton from './SubmitButton'
 import NextButton from "./NextButton"
 
 function ShowQuestion({ answerCountry, options, selectedOption,
-    handleOptionChange, isSubmitted, handleNextButton, handleSubmit }) {
+    handleOptionChange, isSubmitted, handleNextButton, handleSubmit, progress }) {
     return (
         <div>
             <h2 className='questionTitle'>Which country is this?</h2>
@@ -31,7 +31,7 @@ function ShowQuestion({ answerCountry, options, selectedOption,
                         ))}
                     </ul>
                     {!isSubmitted ? <SubmitButton handleSubmit={handleSubmit} selectedOption={selectedOption} />
-                        : <NextButton handleNextButton={handleNextButton} />}
+                        : <NextButton handleNextButton={handleNextButton} progress={progress} />}
                 </div>
             </div>
         </div>

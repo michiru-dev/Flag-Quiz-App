@@ -1,19 +1,30 @@
 import './app.scss'
-import Questions from './components/Questions'
+import "./styles/button.scss"
+import "./styles/landing.scss"
+import "./styles/quiz.scss"
+import "./styles/playAndScoreCheckButton.scss"
+import "./styles/finalScore.scss"
+import Questions from './components/pages/quiz'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import FinalScore from './components/FinalScore';
+import FinalScore from './components/pages/result/FinalScore';
+import LandingPage from './components/pages/landing';
+
 
 
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Questions />} />
-        <Route path="result" element={<FinalScore />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/quiz" element={<Questions />} />
+          <Route path="/quiz/result" element={<FinalScore />} />
+        </Routes>
+      </BrowserRouter>
+      <footer>© 2023 Michiru.I</footer>
+    </div>
   );
 }
 

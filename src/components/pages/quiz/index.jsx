@@ -2,9 +2,10 @@ import React from 'react'
 import ShowAnswer from './ShowAnswer'
 import ShowQuestion from './ShowQuestion'
 import { useState, useEffect, useCallback } from 'react';
-import { getNationalData } from '../repository/country';
+import { getNationalData } from '../../../repository/country';
 import ProgressBar from './ProgressBar';
 import { Link } from "react-router-dom";
+import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton';
 
 function Questions() {
 
@@ -91,9 +92,13 @@ function Questions() {
             <ProgressBar progress={progress} />
             <ShowQuestion answerCountry={question.answerCountry} options={question.options}
                 selectedOption={selectedOption} handleOptionChange={handleOptionChange}
-                isSubmitted={isSubmitted} handleNextButton={handleNextButton} handleSubmit={handleSubmit} />
+                isSubmitted={isSubmitted} handleNextButton={handleNextButton}
+                handleSubmit={handleSubmit} progress={progress} />
             {selectedOption !== null && <ShowAnswer isAnswerCorrect={isAnswerCorrect} answerCountryName={question.answerCountry.name.common} />}
-            {progress === 100 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}><button className='finalScoreButton'> Check your final Score!</button></Link>}
+            {/* {progress === 30 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}>
+                <button className='finalScoreButton'> Check your final Score!</button></Link>} */}
+            {progress === 30 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}>
+                <PlayAndScoreCheckButton text={"Check your final Score!"} className={"finalScoreButton"} /></Link>}
 
         </div >
     )
