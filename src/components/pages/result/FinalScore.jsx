@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 function FinalScore() {
     const location = useLocation()
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const { countCorrectAnswer, howManyQue } = location.state;
+
 
     //urlベタ打ちしてresultに入ってきた場合は問題の最初にリディレクト
     useEffect(() => {
@@ -32,8 +34,8 @@ function FinalScore() {
 
     return (
         <div>
-            <div className='finalScore'>You got {location.state.countCorrectAnswer}/10!</div>
-            <Link to={"/quiz"}><PlayAndScoreCheckButton text={"Play again!"} className={"playAgainButton"} /></Link>
+            <div className='finalScore'>You got {countCorrectAnswer}/{howManyQue}!</div>
+            <Link to={"/"}><PlayAndScoreCheckButton text={"Play again!"} className={"playAgainButton"} /></Link>
             {/* /ダッシュはルートからという意味がある */}
         </div>
     )

@@ -4,6 +4,7 @@ import "./styles/landing.scss"
 import "./styles/quiz.scss"
 import "./styles/playAndScoreCheckButton.scss"
 import "./styles/finalScore.scss"
+import "./styles/radioButton.scss"
 import Questions from './components/pages/quiz'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import FinalScore from './components/pages/result/FinalScore';
