@@ -1,6 +1,8 @@
-function PlayAndScoreCheckButton({ text, className }) {
-    return <button className={`playScoreButton ${className}`}
-        type='button' >{text}</button>
+function PlayAndScoreCheckButton({ text, className, disabled }) {
+    return <div className="playScoreButtonWrapper">
+        <button className={`playScoreButton ${className}`}
+            type='button' disabled={disabled}>{text}</button>
+    </div>
 }
 
 export default PlayAndScoreCheckButton

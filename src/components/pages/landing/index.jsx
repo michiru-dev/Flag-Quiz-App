@@ -1,14 +1,29 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton';
+import { Link } from "react-router-dom"
+import { useState } from "react"
+import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton'
+import QuestionQuantitySelector from "./QuestionQuantitySelector"
 
 
 function LandingPage() {
+
+    const [numOfQuestions, setNumOfQuestions] = useState(0)
+
+    const handleNumQuestions = (num) => {
+        //classが2つついてるからそれの一つ目を取得
+        // const num = Number(e.currentTarget.className.split(" ")[0])
+        setNumOfQuestions(num)
+    }
+
+
     return (
         <div>
             <div className='appTitle'>World Flag Quiz</div>
-            {/* <Link to={"quiz"}><button className='startButton'>PLAY</button></Link> */}
-            <Link to={"quiz"}><PlayAndScoreCheckButton text={"PLAY"} className={"startButton"} /></Link>
+            <QuestionQuantitySelector setNumOfQuestions={setNumOfQuestions}
+                handleNumQuestions={handleNumQuestions} />
+            <Link state={{ numOfQuestions: numOfQuestions }} to={"quiz"}>
+                <PlayAndScoreCheckButton text={"PLAY"} className={"startButton"}
+                    disabled={numOfQuestions === 0} />
+            </Link>
 
         </div>
     )

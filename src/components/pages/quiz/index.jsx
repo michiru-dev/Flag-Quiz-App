@@ -4,10 +4,13 @@ import ShowQuestion from './ShowQuestion'
 import { useState, useEffect, useCallback } from 'react';
 import { getNationalData } from '../../../repository/country';
 import ProgressBar from './ProgressBar';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton';
 
 function Questions() {
+    //routerからlocation渡すため
+    const location = useLocation()
+    const howManyQue = location.state.numOfQuestions
 
     const [selectedOption, setSelectedOption] = useState(null)
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(null)
@@ -16,6 +19,7 @@ function Questions() {
     //usestateは更新ボタンを押したら初期値（今回はnull）に戻ってしまう
     const [progress, setprogress] = useState(0)
     const [countCorrectAnswer, setCountCorrectAnswer] = useState(0)
+
 
     //useCallbackは第二引数の時だけ定義をし直す
     const handleFetchNationalData = useCallback(() => {
@@ -64,7 +68,7 @@ function Questions() {
 
     const handleSubmit = () => {
         if (question === null) return;
-        setprogress(progress + 10)
+        setprogress(progress + 1)
         setIsSubmitted(true)
         //答えが一致しているか判定
         const isAnswerMatch = selectedOption === question.answerCountry.name.common
@@ -87,21 +91,49 @@ function Questions() {
     /* usestateの特徴を考慮して初回レンダリング時のnullの時は何も表示しない */
     if (question === null) return null
 
+
     return (
         <div>
-            <ProgressBar progress={progress} />
-            <ShowQuestion answerCountry={question.answerCountry} options={question.options}
-                selectedOption={selectedOption} handleOptionChange={handleOptionChange}
-                isSubmitted={isSubmitted} handleNextButton={handleNextButton}
-                handleSubmit={handleSubmit} progress={progress} />
-            {selectedOption !== null && <ShowAnswer isAnswerCorrect={isAnswerCorrect} answerCountryName={question.answerCountry.name.common} />}
-            {/* {progress === 30 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}>
-                <button className='finalScoreButton'> Check your final Score!</button></Link>} */}
-            {progress === 30 && <Link state={{ countCorrectAnswer: countCorrectAnswer }} to={"result"}>
-                <PlayAndScoreCheckButton text={"Check your final Score!"} className={"finalScoreButton"} /></Link>}
+            <ProgressBar
+                progress={progress}
+                howManyQue={howManyQue}
+            />
+            <ShowQuestion
+                answerCountry={question.answerCountry}
+                options={question.options}
+                selectedOption={selectedOption}
+                handleOptionChange={handleOptionChange}
+                isSubmitted={isSubmitted}
+                handleNextButton={handleNextButton}
+                handleSubmit={handleSubmit}
+                isAllAnswered={progress === howManyQue}
+            />
+            {
+                selectedOption !== null &&
+                <ShowAnswer
+                    isAnswerCorrect={isAnswerCorrect}
+                    answerCountryName={question.answerCountry.name.common}
+                />
+            }
+            {
+                progress === howManyQue &&
+                <Link
+                    state={{
+                        countCorrectAnswer: countCorrectAnswer,
+                        howManyQue: howManyQue
+                    }}
+                    to={"result"}
+                >
+                    <PlayAndScoreCheckButton
+                        text={"Check your final Score!"}
+                        className={"finalScoreButton"}
+                    />
+                </Link>
+            }
 
         </div >
     )
 }
 
 export default Questions
+
