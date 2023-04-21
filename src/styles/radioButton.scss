@@ -1,7 +1,7 @@
 .radiogroup {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    //alignitemsの値はそれぞれのstyleで直接指定
 }
 
 .wrapper {
@@ -70,6 +70,10 @@
 .state:checked~.label .indicator::after {
     transform: scale3d(.975, .975, 1) translate3d(0, 10%, 0);
     opacity: 0;
+}
+
+.state:checked~.label .text {
+    opacity: 1;
 }
 
 .state:focus~.label .text {
