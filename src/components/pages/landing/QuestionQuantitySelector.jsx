@@ -12,7 +12,7 @@ const numberOfQuestionsList = [5, 10, 15]
 function QuestionQuantitySelector({ setNumOfQuestions, handleNumQuestions }) {
 
     return (
-        <div className="radiogroup">
+        <div className="radiogroup" style={{ alignItems: "center" }}>
             {numberOfQuestionsList.map((num) => (
                 <div key={num} onClick={() => handleNumQuestions(num)} className="wrapper">
                     <input type="radio" name='questions' id={`${num}que`} className='state' />
