@@ -6,11 +6,12 @@ import { getNationalData } from '../../../repository/country';
 import ProgressBar from './ProgressBar';
 import { Link, useLocation } from "react-router-dom";
 import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton';
+import { isValidLocationState } from '../../../utils/utilities';
+import { useCheckLocationState } from '../../../hooks/useCheckLocationState';
 
 function Questions() {
     //routerからlocation渡すため
     const location = useLocation()
-    const howManyQue = location.state.numOfQuestions
 
     const [selectedOption, setSelectedOption] = useState(null)
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(null)
@@ -30,6 +31,7 @@ function Questions() {
 
             //全世界の国名のみ取得
             const allCountriesName = data.map((country) => country.name.common)
+            console.log(answerCountry)
             let options = [
                 answerCountry.name.common,
                 //ランダムな3国名を取得
@@ -89,9 +91,15 @@ function Questions() {
         handleFetchNationalData()
     }
 
+    //error handling
+    useCheckLocationState(location.state)
+
+    if (!isValidLocationState(location.state)) return null
+
     /* usestateの特徴を考慮して初回レンダリング時のnullの時は何も表示しない */
     if (question === null) return null
 
+    const { howManyQue } = location.state
 
     return (
         <div>

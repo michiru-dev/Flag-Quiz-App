@@ -20,7 +20,7 @@ function LandingPage() {
             <div className='appTitle'>World Flag Quiz</div>
             <QuestionQuantitySelector setNumOfQuestions={setNumOfQuestions}
                 handleNumQuestions={handleNumQuestions} />
-            <Link state={{ numOfQuestions: numOfQuestions }} to={"quiz"}>
+            <Link state={{ howManyQue: numOfQuestions }} to={"quiz"}>
                 <PlayAndScoreCheckButton text={"PLAY"} className={"startButton"}
                     disabled={numOfQuestions === 0} />
             </Link>
