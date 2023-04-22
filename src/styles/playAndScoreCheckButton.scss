@@ -56,3 +56,10 @@
     border: 2px solid;
     pointer-events: none;
 }
+
+
+@media (max-width:599px) {
+    .playScoreButton {
+        margin-top: 2vh;
+    }
+}

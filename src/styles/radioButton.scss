@@ -28,13 +28,14 @@
     margin-left: 16px;
     opacity: .6;
     transition: opacity .2s linear, transform .2s ease-out;
+    text-align: left;
 }
 
 .indicator {
     position: relative;
     border-radius: 50%;
     height: 30px;
-    width: 30px;
+    min-width: 30px;
     box-shadow:
         -8px -4px 8px 0px #ffffff,
         8px 4px 12px 0px #d1d9e6;
@@ -83,4 +84,10 @@
 
 .label:hover .text {
     opacity: 1;
+}
+
+@media (max-width:599px) {
+    .radiogroup {
+        margin-bottom: 1vh;
+    }
 }

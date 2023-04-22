@@ -54,6 +54,7 @@ function Questions() {
     }, [])
 
 
+
     //初回にhandleFetchNationalDataを実行する
     //第二引数はなくてもいけるがwarningでてるので入れとく
     useEffect(() => {
