@@ -1,36 +1,19 @@
-import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 //reactrouterを使ってるためpropsをわたせないからuselocationを使ってる
 import PlayAndScoreCheckButton from '../../common/PlayAndScoreCheckButton';
 import { Link } from 'react-router-dom';
+import { useCheckLocationState } from '../../../hooks/useCheckLocationState';
+import { isValidLocationState } from '../../../utils/utilities';
 
 function FinalScore() {
     const location = useLocation()
-    const navigate = useNavigate()
 
-    //urlベタ打ちしてresultに入ってきた場合は問題の最初にリディレクト
-    useEffect(() => {
-        if (
-            //typeofはnullを判定できない
-            location.state === null ||
-            location.state.countCorrectAnswer === null ||
-            location.state.howManyQue === null
-        ) {
-            navigate('/')
-            return
-        }
-    }, [navigate, location])
-    //初回のみでいいんだけど、warningがでるから
-
-
+    useCheckLocationState(location.state)
 
     //useeffectは初回のレンダリング（描画）後じゃないと動かないから、上のuseeffectが動く前に
     //スコアの表示を試みないようにnullを返す
-    if (
-        location.state === null ||
-        location.state.countCorrectAnswer === null ||
-        location.state.howManyQue === null
-    ) return null
+    if (!isValidLocationState(location.state)) return null
+
 
     const { countCorrectAnswer, howManyQue } = location.state
 
