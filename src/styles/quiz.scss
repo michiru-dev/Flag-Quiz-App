@@ -108,3 +108,47 @@ a {
     box-shadow: none;
     cursor: default;
 }
+
+@media (max-width:599px) {
+    .questionTitle {
+        margin: 3vh 0 2vh 0;
+    }
+
+
+    img {
+        max-height: 120px;
+    }
+
+    .imgBox {
+        height: 130px;
+    }
+
+    .optionsAndButton {
+        justify-content: space-evenly;
+        margin: 2vh 0 0 0;
+        height: fit-content;
+    }
+
+    .flagAndOptions {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3vh;
+    }
+
+    .wrong {
+        margin: 20px 0 20px;
+        font-size: 1.5rem;
+
+    }
+
+    .correctAnswer {
+        margin: 3vh 0 6vh 0;
+        font-size: 2rem
+    }
+
+    .correctAnswerIs {
+        margin-bottom: 1vh;
+    }
+
+
+}

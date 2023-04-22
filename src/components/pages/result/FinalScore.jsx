@@ -7,15 +7,14 @@ import { Link } from 'react-router-dom';
 function FinalScore() {
     const location = useLocation()
     const navigate = useNavigate()
-    const { countCorrectAnswer, howManyQue } = location.state;
-
 
     //urlベタ打ちしてresultに入ってきた場合は問題の最初にリディレクト
     useEffect(() => {
         if (
-            //optional chainingでundefineか確認＋一番最後の値は自分で確認
-            typeof location.state?.countCorrectAnswer === 'undefined' ||
-            location.state.countCorrectAnswer === null
+            //typeofはnullを判定できない
+            location.state === null ||
+            location.state.countCorrectAnswer === null ||
+            location.state.howManyQue === null
         ) {
             navigate('/')
             return
@@ -25,12 +24,15 @@ function FinalScore() {
 
 
 
-    //navigateが初回のレンダリングがないと動かないから、上のuseeffectが動く前にスコアがでちゃわないようにnullを返す
+    //useeffectは初回のレンダリング（描画）後じゃないと動かないから、上のuseeffectが動く前に
+    //スコアの表示を試みないようにnullを返す
     if (
-        typeof location.state?.countCorrectAnswer === 'undefined' ||
-        location.state.countCorrectAnswer === null
+        location.state === null ||
+        location.state.countCorrectAnswer === null ||
+        location.state.howManyQue === null
     ) return null
 
+    const { countCorrectAnswer, howManyQue } = location.state
 
     return (
         <div>
