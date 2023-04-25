@@ -10,10 +10,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import FinalScore from './components/pages/result/FinalScore';
 import LandingPage from './components/pages/landing';
 
-
-
-
-
 function App() {
   return (
     <div>
