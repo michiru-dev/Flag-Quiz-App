@@ -1,20 +1,21 @@
 .baseButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    cursor: pointer;
-    width: auto;
-    height: 30px;
-    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
-    border-radius: 5px;
-    border: 1px solid #8F9092;
-    transition: all 0.2s ease;
-    font-size: 14px;
-    color: #606060;
-    text-shadow: 0 1px #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: auto;
+  height: 30px;
+  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+  border-radius: 5px;
+  border: 1px solid #8f9092;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #606060;
+  text-shadow: 0 1px #fff;
 }
 
 .baseButton:hover {
-    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
 }

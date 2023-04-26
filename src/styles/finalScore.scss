@@ -1,26 +1,26 @@
 .finalScore {
-    margin: 20vh 0 10vh 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 26px;
-    text-align: center;
+  margin: 20vh 0 10vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  text-align: center;
 }
 
 .finalScore::before,
 .finalScore::after {
-    content: '';
-    width: 3px;
-    height: 40px;
-    background-color: #3fc1c9;
+  content: '';
+  width: 3px;
+  height: 40px;
+  background-color: #3fc1c9;
 }
 
 .finalScore::before {
-    margin-right: 30px;
-    transform: rotate(-35deg)
+  margin-right: 30px;
+  transform: rotate(-35deg);
 }
 
 .finalScore::after {
-    margin-left: 30px;
-    transform: rotate(35deg)
+  margin-left: 30px;
+  transform: rotate(35deg);
 }

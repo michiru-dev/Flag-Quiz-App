@@ -1,21 +1,21 @@
 * {
-    font-family: 'Sora', sans-serif;
+  font-family: 'Sora', sans-serif;
 }
 
 footer {
-    font-size: 14px;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 599px) {
+  footer {
+    font-size: 11px;
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-}
-
-@media (max-width:599px) {
-    footer {
-        font-size: 11px;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+  }
 }
