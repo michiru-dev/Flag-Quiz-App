@@ -4,13 +4,14 @@
 4択の国旗当てゲームです。
 
 #### フロントエンド
-- React.js v18
-- React-router-dom v6
-- Typescript
-- Scss(Sass)
+- React.js 18.2
+- React-router-dom 6.10
+- Typescript 4.9.5
+- Scss(Sass) 1.62
 
 #### バックエンド
-REST COUNTRIES([https://restcountries.com/](https://restcountries.com/))
+- フリーAPI
+  - REST COUNTRIES([https://restcountries.com/](https://restcountries.com/))
 
 #### デプロイ
 Vercel
